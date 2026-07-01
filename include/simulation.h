@@ -8,9 +8,7 @@
 #include <random>
 #include <optional>
 
-// ─────────────────────────────────────────────
-//  Forward declarations
-// ─────────────────────────────────────────────
+ 
 struct MachineCategory;
 struct AdjusterProfile;
 class Machine;
@@ -18,9 +16,7 @@ class Adjuster;
 class ServiceManager;
 class Simulation;
 
-// ─────────────────────────────────────────────
-//  Data-transfer types (used in config & reports)
-// ─────────────────────────────────────────────
+ 
 struct MachineCategory {
     std::string name;
     int         count;      // number of machines in factory
@@ -40,10 +36,7 @@ struct SimConfig {
     std::vector<int>             adjusterCounts; // count per AdjusterProfile index
     unsigned int                 randomSeed;
 };
-
-// ─────────────────────────────────────────────
-//  Results
-// ─────────────────────────────────────────────
+ 
 struct MachineStats {
     std::string category;
     int         totalMachines;
@@ -69,9 +62,7 @@ struct SimResults {
     double                     avgRepairWaitTime;
 };
 
-// ─────────────────────────────────────────────
-//  Event types for the event-driven core
-// ─────────────────────────────────────────────
+ 
 enum class EventType {
     MACHINE_FAILURE,
     REPAIR_COMPLETE
@@ -86,9 +77,7 @@ struct Event {
     bool operator>(const Event& o) const { return time > o.time; }
 };
 
-// ─────────────────────────────────────────────
-//  Machine
-// ─────────────────────────────────────────────
+ 
 class Machine {
 public:
     Machine(int id, const MachineCategory& cat, std::mt19937& rng);
@@ -130,9 +119,7 @@ private:
     std::mt19937& rng_;
 };
 
-// ─────────────────────────────────────────────
-//  Adjuster
-// ─────────────────────────────────────────────
+ 
 class Adjuster {
 public:
     Adjuster(int id, const AdjusterProfile& profile);
@@ -164,9 +151,7 @@ private:
     int    jobsDone_      = 0;
 };
 
-// ─────────────────────────────────────────────
-//  ServiceManager  (single-queue dispatcher)
-// ─────────────────────────────────────────────
+ 
 class ServiceManager {
 public:
     explicit ServiceManager(std::vector<std::unique_ptr<Adjuster>>& adjusters);
@@ -199,9 +184,7 @@ private:
     Adjuster* findAvailableAdjuster(const std::string& category);
 };
 
-// ─────────────────────────────────────────────
-//  Simulation engine
-// ─────────────────────────────────────────────
+ 
 class Simulation {
 public:
     explicit Simulation(const SimConfig& cfg);
