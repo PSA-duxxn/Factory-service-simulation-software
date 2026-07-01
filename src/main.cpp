@@ -7,9 +7,7 @@
 #include <stdexcept>
 #include <cstring>
 
-// ─────────────────────────────────────────────
-//  Usage
-// ─────────────────────────────────────────────
+ 
 static void usage(const char* prog)
 {
     std::cout << "\nUsage:\n"
@@ -22,9 +20,7 @@ static void usage(const char* prog)
               << "  template — write a sample config JSON to get started\n\n";
 }
 
-// ─────────────────────────────────────────────
-//  main
-// ─────────────────────────────────────────────
+ 
 int main(int argc, char* argv[])
 {
     if (argc < 2) { usage(argv[0]); return 1; }
@@ -32,7 +28,7 @@ int main(int argc, char* argv[])
     std::string cmd = argv[1];
 
     try {
-        // ── template ───────────────────────────────────────────────
+       
         if (cmd == "template") {
             std::string outPath = (argc >= 3) ? argv[2] : "config_template.json";
             saveConfigTemplate(outPath);
@@ -40,7 +36,7 @@ int main(int argc, char* argv[])
             return 0;
         }
 
-        // ── run ────────────────────────────────────────────────────
+       
         if (cmd == "run") {
             if (argc < 3) { usage(argv[0]); return 1; }
             std::string cfgPath = argv[2];
@@ -59,7 +55,7 @@ int main(int argc, char* argv[])
             return 0;
         }
 
-        // ── sweep ──────────────────────────────────────────────────
+         
         if (cmd == "sweep") {
             if (argc < 5) { usage(argv[0]); return 1; }
             std::string cfgPath = argv[2];
