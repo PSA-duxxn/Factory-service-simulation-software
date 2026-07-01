@@ -1,9 +1,7 @@
 #include "simulation.h"
 #include <algorithm>
 
-// ─────────────────────────────────────────────
-//  Adjuster
-// ─────────────────────────────────────────────
+ 
 Adjuster::Adjuster(int id, const AdjusterProfile& profile)
     : id_(id)
     , typeName_(profile.name)
