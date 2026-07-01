@@ -1,0 +1,21 @@
+{
+  "sim_duration": 2000,
+  "random_seed": 42,
+  "machine_categories": [
+    { "name": "Lathe",     "count": 200, "mttf": 12.0, "mttr": 2.0 },
+    { "name": "Turning",   "count": 50,  "mttf": 15.0, "mttr": 1.5 },
+    { "name": "Drilling",  "count": 80,  "mttf": 10.0, "mttr": 1.0 },
+    { "name": "Soldering", "count": 30,  "mttf": 20.0, "mttr": 0.5 }
+  ],
+  "adjuster_types": [
+    {
+      "name": "GeneralAdjuster",
+      "expertise": ["Lathe", "Drilling"]
+    },
+    {
+      "name": "SpecialistAdjuster",
+      "expertise": ["Turning", "Soldering"]
+    }
+  ],
+  "adjuster_counts": [10, 5]
+}

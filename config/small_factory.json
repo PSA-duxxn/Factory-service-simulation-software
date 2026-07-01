@@ -1,0 +1,15 @@
+{
+  "sim_duration": 500,
+  "random_seed": 7,
+  "machine_categories": [
+    { "name": "Lathe",    "count": 20, "mttf": 10.0, "mttr": 2.0 },
+    { "name": "Drilling", "count": 10, "mttf": 12.0, "mttr": 1.5 }
+  ],
+  "adjuster_types": [
+    {
+      "name": "UniversalAdjuster",
+      "expertise": ["Lathe", "Drilling"]
+    }
+  ],
+  "adjuster_counts": [3]
+}
