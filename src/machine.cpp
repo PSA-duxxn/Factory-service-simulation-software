@@ -1,9 +1,7 @@
 #include "simulation.h"
 #include <stdexcept>
 
-// ─────────────────────────────────────────────
-//  Machine
-// ─────────────────────────────────────────────
+ 
 Machine::Machine(int id, const MachineCategory& cat, std::mt19937& rng)
     : id_(id)
     , category_(cat.name)
