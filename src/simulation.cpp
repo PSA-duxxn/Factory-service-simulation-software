@@ -4,9 +4,7 @@
 #include <unordered_map>
 #include <cassert>
 
-// ─────────────────────────────────────────────
-//  Helpers
-// ─────────────────────────────────────────────
+ 
 namespace {
 
 // Simple unified queue that stores either machine IDs or adjuster IDs
@@ -88,11 +86,9 @@ struct UnifiedQueue {
     }
 };
 
-} // anonymous namespace
+}  
 
-// ─────────────────────────────────────────────
-//  Simulation
-// ─────────────────────────────────────────────
+ 
 Simulation::Simulation(const SimConfig& cfg)
     : cfg_(cfg)
     , rng_(cfg.randomSeed)
@@ -112,7 +108,7 @@ void Simulation::scheduleRepairComplete(int machineId, int adjusterId, double wh
 
 SimResults Simulation::run()
 {
-    // ── Build machines ──────────────────────────────────────────────
+    
     std::unordered_map<int,int> machineIdToIndex; // machineId → index in machines_
     int machineId = 0;
     for (const auto& cat : cfg_.categories) {
@@ -123,7 +119,7 @@ SimResults Simulation::run()
         }
     }
 
-    // ── Build adjusters ─────────────────────────────────────────────
+ 
     int adjusterId = 0;
     for (size_t t = 0; t < cfg_.adjusterTypes.size(); ++t) {
         int cnt = (t < cfg_.adjusterCounts.size()) ? cfg_.adjusterCounts[t] : 0;
@@ -137,11 +133,11 @@ SimResults Simulation::run()
     if (adjusters_.empty())
         throw std::runtime_error("Simulation requires at least one adjuster.");
 
-    // ── Schedule initial failures ───────────────────────────────────
+     
     for (auto& m : machines_)
         scheduleFailure(m->id(), m->nextFailureTime(0.0));
 
-    // ── Unified queue ───────────────────────────────────────────────
+     
     UnifiedQueue uq;
 
     // All adjusters start idle; put them in adjuster queue
@@ -157,7 +153,7 @@ SimResults Simulation::run()
     std::vector<double> runningStartTime(machines_.size(), 0.0);
     std::vector<double> totalRunTime(machines_.size(), 0.0);
 
-    // ── Event loop ──────────────────────────────────────────────────
+    
     while (!eventQueue_.empty()) {
         Event ev = eventQueue_.top();
         eventQueue_.pop();
@@ -238,19 +234,19 @@ SimResults Simulation::run()
         }
     }
 
-    // ── Final accumulation for machines still running at sim end ────
+   
     for (size_t i = 0; i < machines_.size(); ++i) {
         if (machines_[i]->isUp())
             totalRunTime[i] += cfg_.simDuration - runningStartTime[i];
     }
 
-    // ── Final accumulation for adjusters still busy at sim end ──────
+   
     for (auto& a : adjusters_) {
         if (a->isBusy())
             a->markIdle(cfg_.simDuration);
     }
 
-    // ── Collect stats ───────────────────────────────────────────────
+    
     // Per-category machine stats
     std::unordered_map<std::string, std::vector<int>> catMachines;
     for (size_t i = 0; i < machines_.size(); ++i)
