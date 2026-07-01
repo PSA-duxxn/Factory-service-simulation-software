@@ -32,14 +32,14 @@ void printReport(const SimResults& results)
               << std::fixed << std::setprecision(4)
               << results.avgRepairWaitTime << " hours\n\n";
 
-    // ── Overall utilization ─────────────────────────────────────────
+ 
     std::cout << "  ── Overall Utilization ─────────────────────────────────\n";
     std::cout << "  Machine  Util: " << bar(results.overallMachineUtilization)
               << " " << pct(results.overallMachineUtilization) << "\n";
     std::cout << "  Adjuster Util: " << bar(results.overallAdjusterUtilization)
               << " " << pct(results.overallAdjusterUtilization) << "\n\n";
 
-    // ── Per-category machine stats ──────────────────────────────────
+ 
     std::cout << "  ── Machine Utilization by Category ─────────────────────\n";
     std::cout << "  " << std::left
               << std::setw(15) << "Category"
@@ -59,7 +59,7 @@ void printReport(const SimResults& results)
                   << "\n";
     }
 
-    // ── Per-type adjuster stats ─────────────────────────────────────
+ 
     std::cout << "\n  ── Adjuster Utilization by Type ─────────────────────────\n";
     std::cout << "  " << std::left
               << std::setw(22) << "Adjuster Type"
