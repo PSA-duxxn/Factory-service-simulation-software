@@ -32,7 +32,7 @@ void Machine::markFailed(double now)
     failedAt_   = now;
     ++failures_;
     totalUpTime_ += (now - failedAt_); // accumulated while it was running
-    // Note: totalUpTime_ is adjusted properly in markRepaired
+  
 }
 
 void Machine::markQueueEntry(double now)
