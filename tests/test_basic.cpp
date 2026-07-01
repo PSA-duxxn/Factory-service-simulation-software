@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-// ─── helpers ──────────────────────────────────────────────────────────
+ 
 static SimConfig makeConfig(int machineCount, int adjusterCount,
                              double mttf = 10.0, double mttr = 2.0,
                              double duration = 500.0)
@@ -28,7 +28,7 @@ static SimConfig makeConfig(int machineCount, int adjusterCount,
     return cfg;
 }
 
-// ─── tests ────────────────────────────────────────────────────────────
+ 
 static void test_utilization_between_0_and_1()
 {
     Simulation sim(makeConfig(20, 3));
@@ -99,7 +99,7 @@ static void test_zero_adjusters_throws()
     }
 }
 
-// ─────────────────────────────────────────────
+ 
 int main()
 {
     std::cout << "\nRunning basic simulation tests...\n";
