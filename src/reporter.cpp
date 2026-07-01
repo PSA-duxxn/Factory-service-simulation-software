@@ -6,9 +6,7 @@
 #include <sstream>
 #include <cmath>
 
-// ─────────────────────────────────────────────
-//  Formatting helpers
-// ─────────────────────────────────────────────
+ 
 static std::string pct(double f) {
     std::ostringstream ss;
     ss << std::fixed << std::setprecision(2) << (f * 100.0) << "%";
@@ -20,9 +18,7 @@ static std::string bar(double f, int width = 30) {
     return std::string(filled, '#') + std::string(width - filled, '-');
 }
 
-// ─────────────────────────────────────────────
-//  printReport
-// ─────────────────────────────────────────────
+ 
 void printReport(const SimResults& results)
 {
     std::cout << "\n";
@@ -83,9 +79,7 @@ void printReport(const SimResults& results)
     std::cout << "\n";
 }
 
-// ─────────────────────────────────────────────
-//  exportCSV
-// ─────────────────────────────────────────────
+ 
 void exportCSV(const SimResults& results, const std::string& path)
 {
     std::ofstream f(path);
@@ -113,9 +107,7 @@ void exportCSV(const SimResults& results, const std::string& path)
     std::cout << "  [CSV] Results exported to: " << path << "\n";
 }
 
-// ─────────────────────────────────────────────
-//  Sensitivity sweep
-// ─────────────────────────────────────────────
+ 
 std::vector<SweepPoint> runSweep(const SimConfig& baseConfig,
                                   int minAdj, int maxAdj, int step)
 {
