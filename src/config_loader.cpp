@@ -5,9 +5,7 @@
 #include <iostream>
 #include <iomanip>
 
-// ─────────────────────────────────────────────
-//  Minimal JSON parser helpers
-// ─────────────────────────────────────────────
+ 
 namespace {
 
 struct JsonParser {
@@ -54,7 +52,7 @@ struct JsonParser {
             v.push_back(parseString());
             if (peek() == ',') get();
         }
-        get(); // ']'
+        get();  
         return v;
     }
 
@@ -102,9 +100,7 @@ AdjusterProfile parseAdjusterProfile(JsonParser& p) {
 
 } // anonymous namespace
 
-// ─────────────────────────────────────────────
-//  Public API
-// ─────────────────────────────────────────────
+ 
 SimConfig loadConfig(const std::string& path)
 {
     std::ifstream f(path);
