@@ -1,9 +1,7 @@
 #include "simulation.h"
 #include <stdexcept>
 
-// ─────────────────────────────────────────────
-//  ServiceManager
-// ─────────────────────────────────────────────
+ 
 ServiceManager::ServiceManager(std::vector<std::unique_ptr<Adjuster>>& adjusters)
     : adjusters_(adjusters)
 {}
@@ -70,11 +68,7 @@ ServiceManager::repairComplete(Machine& m, Adjuster& a,
     while (!machineQueue_.empty()) {
         int mid = machineQueue_.front();
         machineQueue_.pop();
-        // We need access to the machine object — we store a raw pointer approach
-        // via a callback set in Simulation::run(). Here we use the adjusters_ ref
-        // and rely on the simulation to provide the machine map.
-        // For simplicity: the adjuster services the front-of-queue machine
-        // if it can. Otherwise we put adjusters in idle queue.
+        
         // (Full category-aware matching is handled if needed; basic FIFO used here.)
         if (nextMachineId == -1) {
             nextMachineId = mid;   // take first available (simplified FIFO)
