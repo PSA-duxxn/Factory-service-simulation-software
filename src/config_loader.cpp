@@ -80,7 +80,7 @@ MachineCategory parseMachineCategory(JsonParser& p) {
         else if (key == "mttr")  cat.mttR  = p.parseNumber();
         if (p.peek() == ',') p.get();
     }
-    p.get(); // '}'
+    p.get();  
     return cat;
 }
 
@@ -98,7 +98,7 @@ AdjusterProfile parseAdjusterProfile(JsonParser& p) {
     return prof;
 }
 
-} // anonymous namespace
+} 
 
  
 SimConfig loadConfig(const std::string& path)
